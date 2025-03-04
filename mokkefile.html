@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chhadva Supermart - Product Guide</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        h2, h3 {
+            text-align: center;
+        }
+        .search-bar {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .spice-button {
+            display: inline-block;
+            margin: 10px;
+            padding: 15px;
+            background: #007BFF;
+            color: white;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+        .spice-button:hover {
+            background: #0056b3;
+        }
+        .product-list {
+            display: none;
+            margin-top: 20px;
+        }
+        .product-list ul {
+            list-style: none;
+            padding: 0;
+        }
+        .product-list li {
+            padding: 10px;
+            background: #f9f9f9;
+            margin: 5px 0;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .product-list li:hover {
+            background: #e2e2e2;
+        }
+        .back-button {
+            margin-top: 10px;
+            padding: 10px;
+            background: #dc3545;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .back-button:hover {
+            background: #a71d2a;
+        }
+        .highlight {
+            background-color: yellow;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f8f9fa;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 15px;
+            margin: 5px;
+            font-size: 16px;
+            color: white;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+        .product-list {
+            text-align: left;
+            padding: 10px;
+            margin-top: 15px;
+        }
+        .product-list a {
+            display: block;
+            padding: 5px;
+            color: #007bff;
+            text-decoration: none;
+        }
+        .product-list a:hover {
+            text-decoration: underline;
+        }
+        .back-btn {
+            background-color: #dc3545;
+            color: white;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            margin-top: 15px;
+            cursor: pointer;
+        }
+        .back-btn:hover {
+            background-color: #c82333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Chhadva Supermart - Spices Selection</h2>
+        <input type="text" id="search" class="search-bar" placeholder="Search for spices..." onkeyup="filterProducts()">
+        <div>
+            <div class="spice-button" onclick="showProducts('keya')">Keya (27)</div>
+            <div class="spice-button" onclick="showProducts('suhana')">Suhana (9)</div>
+            <div class="spice-button" onclick="showProducts('tushraj')">Tushraj (14)</div>
+            <div class="spice-button" onclick="showProducts('veeba')">Veeba (8)</div>
+            <div class="spice-button" onclick="showProducts('droetkers')">Dr. Oetker's (8)</div>
+            <div class="spice-button" onclick="showProducts('snapin')">Snapin (25)</div>
+        </div>
+        
+        <div id="productDisplay" class="product-list">
+            <h3 id="productTitle"></h3>
+            <ul id="productItems"></ul>
+            <button class="back-button" onclick="hideProducts()">Back</button>
+        </div>
+    </div>
+
+    <script>
+        const products = {
+    snapin: [
+        "<a href='snapin1.html'>WHITE ONION POWDER</a>",
+        "<a href='snapin2.html'>GINGER POWDER</a>",
+        "<a href='snapin3.html'>GARLIC POWDER</a>",
+        "<a href='snapin4.html'>THYME</a>",
+        "<a href='snapin5.html'>PIRI PIRI</a>",
+        "<a href='snapin6.html'>CHEESY GARLIC</a>",
+        "<a href='snapin7.html'>OREGANO</a>",
+        "<a href='snapin8.html'>PASTA MIX</a>",
+        "<a href='snapin9.html'>CHILLI FLAKES</a>",
+        "<a href='snapin10.html'>BASIL</a>",
+        "<a href='snapin11.html'>PIZZA MIX</a>",
+        "<a href='snapin12.html'>CRUNCHY GARLIC</a>",
+        "<a href='snapin13.html'>CHILLI PAPRIKA</a>",
+        "<a href='snapin14.html'>MIXED HERBS</a>",
+        "<a href='snapin15.html'>CRUSHED PEPPER</a>",
+        "<a href='snapin16.html'>ACHARI SEASONING</a>",
+        "<a href='snapin17.html'>CLOVE</a>",
+        "<a href='snapin18.html'>CINNAMON</a>",
+        "<a href='snapin19.html'>CARDAMOM</a>",
+        "<a href='snapin20.html'>ROSEMARY</a>",
+        "<a href='snapin21.html'>NUTMEG</a>",
+        "<a href='snapin22.html'>CHAAT MASALA</a>",
+        "<a href='snapin23.html'>LEMON CHILLI</a>",
+        "<a href='snapin24.html'>BBQ</a>",
+        "<a href='snapin25.html'>MEXICAN SEASONING</a>"
+    ],
+    keya: [
+        "<a href='keya1.html'>PIRI PIRI</a>",
+        "<a href='keya2.html'>ITALIAN PIZZA</a>",
+        "<a href='keya3.html'>OREGANO</a>",
+        "<a href='keya4.html'>CAJUN SPICE</a>",
+        "<a href='keya5.html'>RED CHILLI FLAKES</a>",
+        "<a href='keya6.html'>ITALIAN SEASONING</a>",
+        "<a href='keya7.html'>MIXED HERBS</a>",
+        "<a href='keya8.html'>SPICE MIX</a>",
+        "<a href='keya9.html'>ANY TIME EGGS SPICE MIX</a>",
+        "<a href='keya10.html'>SANDWICH</a>",
+        "<a href='keya11.html'>ALL-PURPOSE SEASONING</a>",
+        "<a href='keya12.html'>KIMCHI SPICE</a>",
+        "<a href='keya13.html'>GARLIC BREAD</a>",
+        "<a href='keya14.html'>PASTA SEASONING</a>",
+        "<a href='keya15.html'>PIZZA SEASONING</a>",
+        "<a href='keya16.html'>CHAAT MASALA</a>",
+        "<a href='keya17.html'>CHINESE</a>",
+        "<a href='keya18.html'>CARDAMOM</a>",
+        "<a href='keya19.html'>GINGER GARLIC POWDER</a>",
+        "<a href='keya20.html'>ITALIAN SPICE MIX</a>",
+        "<a href='keya21.html'>TACOS NACHOS SPICE MIX</a>",
+        "<a href='keya22.html'>BASIL</a>",
+        "<a href='keya23.html'>LEMON GRASS</a>",
+        "<a href='keya24.html'>BLACK PEPPER</a>",
+        "<a href='keya25.html'>WHITE PEPPER</a>",
+        "<a href='keya26.html'>ONION POWDER</a>",
+        "<a href='keya27.html'>PIZZA CHILLI</a>"
+    ],
+    tushraj: [
+        "<a href='tushraj1.html'>BLACK PEPPER CRUSHED</a>",
+        "<a href='tushraj2.html'>WHITE PEPPER</a>",
+        "<a href='tushraj3.html'>ROASTED JEERA</a>",
+        "<a href='tushraj4.html'>FRANKIE MASALA</a>",
+        "<a href='tushraj5.html'>PERI PERI MIX</a>",
+        "<a href='tushraj6.html'>MISAL MASALA</a>",
+        "<a href='tushraj7.html'>SANDWICH MASALA</a>",
+        "<a href='tushraj8.html'>TEA MASALA</a>",
+        "<a href='tushraj9.html'>CHAAS MASALA</a>",
+        "<a href='tushraj10.html'>OREGANO</a>",
+        "<a href='tushraj11.html'>KUTCHI DABELI MASALA</a>",
+        "<a href='tushraj12.html'>MINT POWDER</a>",
+        "<a href='tushraj13.html'>CHILLI FLAKES</a>",
+        "<a href='tushraj14.html'>PASTA MASALA</a>"
+    ],
+    veeba: [
+        "<a href='veeba1.html'>MAYONNAISE</a>",
+        "<a href='veeba2.html'>PASTA & PIZZA SAUCE</a>",
+        "<a href='veeba3.html'>VEG MAYONNAISE</a>",
+        "<a href='veeba4.html'>PIZZA TOPPING</a>",
+        "<a href='veeba5.html'>SMART VEG MAYONNAISE</a>",
+        "<a href='veeba6.html'>CHEESY PASTA</a>",
+        "<a href='veeba7.html'>SANDWICH SPREAD (CHEESE AND CHILLI)</a>",
+        "<a href='veeba8.html'>SANDWICH SPREAD NORMAL</a>"
+    ],
+    droetkers: [
+        "<a href='oetkar1.html'>MAYONNAISE</a>",
+        "<a href='oetkar2.html'>PASTA & PIZZA RED SAUCE</a>",
+        "<a href='oetkar3.html'>VEG MAYONNAISE</a>",
+        "<a href='oetkar4.html'>ENGLISH MUSTARD</a>",
+        "<a href='oetkar5.html'>BURGER MAYONNAISE</a>",
+        "<a href='oetkar6.html'>WHITE SAUCE PASTA & PIZZA</a>",
+        "<a href='oetkar7.html'>SANDWICH SPREAD (CHEESE AND CHILLI)</a>",
+        "<a href='oetkar8.html'>SANDWICH SPREAD NORMAL</a>"
+    ],
+    suhana: [
+        "<a href='suhana1.html'>CHICKEN BIRYANI MIX</a>",
+        "<a href='suhana2.html'>CHICKEN GRAVY MIX</a>",
+        "<a href='suhana3.html'>VEG KOLHAPURI MIX</a>",
+        "<a href='suhana4.html'>PAV BHAJI MIX</a>",
+        "<a href='suhana5.html'>PANEER MAKHANWALA MIX</a>",
+        "<a href='suhana6.html'>PALAK PANEER MIX</a>",
+        "<a href='suhana7.html'>CHICKEN TANDOORI MIX</a>",
+        "<a href='suhana8.html'>MUTTON BIRYANI MIX</a>",
+        "<a href='suhana9.html'>PANEER BUTTER MASALA</a>"
+    ]
+};
+
+function showProducts(spiceBrand) {
+    const productDisplay = document.getElementById('productDisplay');
+    const productTitle = document.getElementById('productTitle');
+    const productItems = document.getElementById('productItems');
+    
+    productTitle.innerText = spiceBrand.charAt(0).toUpperCase() + spiceBrand.slice(1) + " Products";
+    productItems.innerHTML = products[spiceBrand].join("");
+    
+    productDisplay.style.display = "block";
+}
+
+function hideProducts() {
+    document.getElementById('productDisplay').style.display = "none";
+}
+    </script>
+</body>
+</html>
